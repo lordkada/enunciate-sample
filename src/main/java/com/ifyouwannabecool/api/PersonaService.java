@@ -6,23 +6,18 @@
 
 package com.ifyouwannabecool.api;
 
-import javax.jws.WebService;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-
+import com.ifyouwannabecool.domain.PaginatedResponse;
 import com.ifyouwannabecool.domain.persona.Persona;
+
+import javax.jws.WebService;
+import javax.ws.rs.*;
 
 /**
  * The persona services is used to perform actions on the data associated with a persona.
  * @author Ryan Heaton
  */
 @WebService
-public interface PersonaService
-{
+public interface PersonaService {
 
     /**
      * Reads a persona.
@@ -54,5 +49,22 @@ public interface PersonaService
     @Path("/{id}")
     @DELETE
     boolean deletePersona(@PathParam("id") String personaId) throws PermissionDeniedException;
+
+    /**
+     * Returns a paginated list of personas.
+     * @return The persona.
+     */
+    @GET
+    @Path("/ex0")
+    PaginatedResponse<Persona> readPersonasWithGenerics();
+
+    /**
+     * Returns a paginated list of personas.
+     * @return The persona.
+     * @returnWrapped com.ifyouwannabecool.domain.PaginatedResponse<com.ifyouwannabecool.domain.persona.Persona>
+     */
+    @GET
+    @Path("/ex1")
+    void readPersonasWithWrappedResponse();
 
 }

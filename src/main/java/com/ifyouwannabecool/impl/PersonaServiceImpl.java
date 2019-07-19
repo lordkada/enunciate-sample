@@ -6,43 +6,51 @@
 
 package com.ifyouwannabecool.impl;
 
-import javax.jws.WebService;
-import javax.ws.rs.Path;
-
 import com.ifyouwannabecool.api.PermissionDeniedException;
 import com.ifyouwannabecool.api.PersonaService;
+import com.ifyouwannabecool.domain.PaginatedResponse;
 import com.ifyouwannabecool.domain.persona.Persona;
+
+import javax.jws.WebService;
+import javax.ws.rs.Path;
+import java.util.Collections;
 
 /**
  * @author Ryan Heaton
  */
 @WebService(endpointInterface = "com.ifyouwannabecool.api.PersonaService")
 @Path("/persona")
-public class PersonaServiceImpl implements PersonaService
-{
+public class PersonaServiceImpl implements PersonaService {
 
-    public Persona readPersona(final String personaId)
-    {
+    public Persona readPersona(final String personaId) {
         final Persona persona = new Persona();
         // ...load the persona from the db, etc...
         return persona;
     }
 
-    public Persona readPersonaJson()
-    {
+    public Persona readPersonaJson() {
         final Persona persona = new Persona();
         // ...load the persona from the db, etc...
         return persona;
     }
 
-    public void storePersona(final Persona persona)
-    {
+    public void storePersona(final Persona persona) {
         // ... store the persona in the db...
     }
 
-    public boolean deletePersona(final String personaId) throws PermissionDeniedException
-    {
+    public boolean deletePersona(final String personaId) throws PermissionDeniedException {
         // ..do the delete, throw permission denied as necessary...
         return true;
     }
+
+    @Override
+    public PaginatedResponse<Persona> readPersonasWithGenerics() {
+        return new PaginatedResponse<Persona>()
+            .setResults(Collections.singletonList(new Persona()));
+    }
+
+    @Override
+    public void readPersonasWithWrappedResponse() {
+    }
+
 }

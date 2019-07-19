@@ -70,4 +70,5 @@ public class Persona {
   public void setPicture(DataHandler picture) {
     this.picture = picture;
   }
+
 }
